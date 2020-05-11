@@ -1,2 +1,2 @@
-# GoLang
-Introduction to Go Programming
+# Introduction to Go Programming
+
