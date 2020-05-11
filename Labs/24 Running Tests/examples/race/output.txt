@@ -1,0 +1,64 @@
+$ go test -race
+==================
+WARNING: DATA RACE
+Read at 0x00c0000b0210 by goroutine 8:
+  runtime.mapaccess1_fast64()
+      /usr/local/Cellar/go/1.12.1/libexec/src/runtime/map_fast64.go:12 +0x0
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func1()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:13 +0x5b
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func4()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:30 +0x6b
+
+Previous write at 0x00c0000b0210 by goroutine 7:
+  runtime.mapassign_fast64()
+      /usr/local/Cellar/go/1.12.1/libexec/src/runtime/map_fast64.go:92 +0x0
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func2()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:17 +0x57
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func3()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:26 +0x63
+
+Goroutine 8 (running) created at:
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:28 +0x1c4
+  testing.tRunner()
+      /usr/local/Cellar/go/1.12.1/libexec/src/testing/testing.go:865 +0x163
+
+Goroutine 7 (finished) created at:
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:24 +0x18e
+  testing.tRunner()
+      /usr/local/Cellar/go/1.12.1/libexec/src/testing/testing.go:865 +0x163
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c0000ea048 by goroutine 8:
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func1()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:13 +0x6e
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func4()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:30 +0x6b
+
+Previous write at 0x00c0000ea048 by goroutine 7:
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func2()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:17 +0x6c
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace.func3()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:26 +0x63
+
+Goroutine 8 (running) created at:
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:28 +0x1c4
+  testing.tRunner()
+      /usr/local/Cellar/go/1.12.1/libexec/src/testing/testing.go:865 +0x163
+
+Goroutine 7 (finished) created at:
+  github.com/gopherguides/learn/_training/testing/running/src/race_test.TestRace()
+      /Users/corylanou/go/src/github.com/gopherguides/learn/_training/testing/running/src/race/race_test.go:24 +0x18e
+  testing.tRunner()
+      /usr/local/Cellar/go/1.12.1/libexec/src/testing/testing.go:865 +0x163
+==================
+0
+1
+--- FAIL: TestRace (0.00s)
+    testing.go:809: race detected during execution of test
+FAIL
+exit status 1
+FAIL    github.com/gopherguides/learn/_training/testing/running/src/race        0.016s
